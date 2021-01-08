@@ -1,0 +1,10 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="me.foolishchow.android.pictureMedia">
+
+    <application>
+        <activity android:name=".crop.CropActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/CropActivityTheme"
+            />
+    </application>
+</manifest>
