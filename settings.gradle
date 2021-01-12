@@ -1,3 +1,5 @@
+include ':select-crop'
+//include ':picture-preview'
 include ':libary'
 include ':app'
 rootProject.name = "PictureMedia"

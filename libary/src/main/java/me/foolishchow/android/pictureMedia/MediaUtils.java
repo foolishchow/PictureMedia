@@ -28,7 +28,6 @@ public class MediaUtils {
         PictureSelector.create(activity)
                 .openGallery(PictureMimeType.ofImage())// 全部.PictureMimeType.ofAll()、图片.ofImage()、视频.ofVideo()、音频.ofAudio()
                 .imageEngine(GlideEngine.createGlideEngine())// 外部传入图片加载引擎，必传项
-                .isWithVideoImage(true)// 图片和视频是否可以同选,只在ofAll模式下有效
                 .isMaxSelectEnabledMask(true)// 选择数到了最大阀值列表是否启用蒙层效果
                 .isSingleDirectReturn(true)
                 // 最大图片选择数量

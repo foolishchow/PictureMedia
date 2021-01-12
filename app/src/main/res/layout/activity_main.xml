@@ -7,6 +7,21 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+    <ImageView
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/preview"
+        android:layout_width="135dp"
+        android:layout_height="200dp"
+        android:layout_margin="10dp"
+        android:background="#ddd"
+        android:scaleType="centerCrop"
+        />
+
+    <me.foolishchow.android.pictureMedia.view.PictureListSelectView
+        android:id="@+id/list"
+        android:overScrollMode="never"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
     <TextView
         android:id="@+id/select"
         android:layout_width="match_parent"
@@ -24,5 +39,8 @@
         android:background="#ddd"
         android:padding="10dp"
         android:text="选择并裁切" />
+
+
+
 
 </LinearLayout>

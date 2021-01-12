@@ -1,0 +1,9 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="me.foolishchow.android.picture_preview">
+
+    <application>
+        <activity android:name=".ImagePreviewActivity"
+            android:theme="@style/Theme.FoolishChow.MediaPreview"
+            />
+    </application>
+</manifest>
