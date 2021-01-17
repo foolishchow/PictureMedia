@@ -7,8 +7,13 @@
     tools:context=".SlideDownActivity"
     android:fitsSystemWindows="false"
     tools:ignore="MissingDefaultResource">
-    <me.foolishchow.android.picturemedia.SlideView
-        android:id="@+id/viewer"
+    <androidx.viewpager2.widget.ViewPager2
+        android:orientation="horizontal"
+        android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+<!--    <me.foolishchow.android.picturemedia.SlideView-->
+<!--        android:id="@+id/viewer"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"/>-->
 </FrameLayout>

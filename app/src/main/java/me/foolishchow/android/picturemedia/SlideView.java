@@ -14,6 +14,7 @@ import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.CustomTarget;
@@ -97,22 +98,22 @@ public class SlideView extends FrameLayout {
 
     private void createImageView() {
         mImageView.setBackgroundColor(Color.TRANSPARENT);
-        Glide.with(mImageView)
-                .asBitmap()
-                .load("https://jiangruihao-pub.oss-cn-hangzhou.aliyuncs.com/defaults/aaaaa.jpg")
-                .into(new CustomTarget<Bitmap>() {
-                    @Override
-                    public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-                        mImageView.setImageBitmap(resource);
-                    }
-
-                    @Override
-                    public void onLoadCleared(@Nullable Drawable placeholder) {
-
-                    }
-                });
+//        Glide.with(mImageView)
+//                .asBitmap()
+//                .load("https://jiangruihao-pub.oss-cn-hangzhou.aliyuncs.com/defaults/aaaaa.jpg")
+//                .into(new CustomTarget<Bitmap>() {
+//                    @Override
+//                    public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+//                        mImageView.setImageBitmap(resource);
+//                    }
+//
+//                    @Override
+//                    public void onLoadCleared(@Nullable Drawable placeholder) {
+//
+//                    }
+//                });
         //mImageView.displayImage("https://jiangruihao-pub.oss-cn-hangzhou.aliyuncs.com/defaults/aaaaa.jpg");
-        mImageView.scrollTo(0, 0);
+//        mImageView.scrollTo(0, 0);
 
     }
 
@@ -178,7 +179,7 @@ public class SlideView extends FrameLayout {
                 //根据触摸点的Y坐标和屏幕的比例来更改透明度
                 float alphaChangePercent = mTranslateY / screenHeight;
                 mAlpha = 1 - alphaChangePercent;
-                dragAnd2Normal(newMarY, true);
+                dragAnd2Normal(newMarY);
                 break;
             case MotionEvent.ACTION_UP:
                 if (isAnimating) {
@@ -200,7 +201,12 @@ public class SlideView extends FrameLayout {
                 //} else {
                 //    backToNormal();
                 //}
-                backToNormal();
+                float alpha = mBackground.getAlpha();
+                if(alpha < .8f){
+                    backToMin();
+                }else{
+                    backToNormal();
+                }
                 isDrag = false;
                 mYDistanceTraveled = 0;
                 break;
@@ -208,7 +214,10 @@ public class SlideView extends FrameLayout {
 
         mLastY = y;
         return super.dispatchTouchEvent(event);
+    }
 
+    private void backToMin() {
+        ((AppCompatActivity)getContext()).onBackPressed();
     }
 
     private void backToNormal() {
@@ -241,10 +250,10 @@ public class SlideView extends FrameLayout {
 
     private final float DEFAULT_MIN_SCALE = 0.3f;
 
-    void dragAnd2Normal(float currentY, boolean isDrag) {
+    void dragAnd2Normal(float currentY) {
         float nodeMarginPercent = (MAX_Y - currentY + 0) / MAX_Y;
         float widthPercent = DEFAULT_MIN_SCALE + (1f - DEFAULT_MIN_SCALE) * nodeMarginPercent;
-        int originLeftOffset = (screenWidth - screenWidth) / 2;
+        int originLeftOffset = 0;
         int leftOffset = (int) ((screenWidth - screenWidth * widthPercent) / 2);
 
         float left;
